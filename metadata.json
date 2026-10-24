@@ -1,0 +1,8 @@
+{
+  "name": "VIMAL Photos",
+  "description": "Portfolio and gallery website for VIMAL Photos featuring curated photography, category filtering, lightbox viewer, and administration dashboard.",
+  "permissions": [],
+  "capabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
