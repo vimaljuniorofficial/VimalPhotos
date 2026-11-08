@@ -84,6 +84,27 @@
 
 ---
 
+## 🌐 Deploy to Vercel
+
+### Option 1: Automatic Deploy via GitHub (Recommended)
+1. Go to [Vercel Dashboard](https://vercel.com/new).
+2. Import your GitHub repository (`VimalPhotos`).
+3. Vercel automatically detects `vercel.json`:
+   - **Framework Preset**: Other
+   - **Output Directory**: `public`
+   - **Build Command**: `npm run build`
+4. Click **Deploy**. Your site will be live on your custom `.vercel.app` URL with instant edge CDN routing and `/admin` SPA fallback support.
+
+### Option 2: Deploy via Vercel CLI
+Run the following in your terminal:
+```bash
+npm i -g vercel
+vercel
+```
+Follow the interactive prompts to link and deploy to production.
+
+---
+
 ## 🌐 Deploy to Netlify
 
 ### Option 1: Automatic Deploy via GitHub (Recommended)
