@@ -2,6 +2,8 @@
 
 > A modern, responsive photography portfolio and gallery website featuring dynamic category filtering, a full-screen lightbox viewer, and a built-in admin dashboard with cloud synchronization.
 
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vimaljuniorofficial/VimalPhotos)
+
 ---
 
 ## ✨ Features
@@ -26,16 +28,49 @@
   - Offline-first persistence via browser `localStorage`.
   - Automatic bidirectional sync with Firebase Realtime Database.
   - Realtime visual sync status dot in the admin bar.
-- **Deployment Ready**:
-  - Single-page application (SPA) routing with `_redirects` and `netlify.toml`.
-  - Cache-control optimization via `_headers`.
+- **Vercel Edge Ready**:
+  - Zero-config single-page application (SPA) routing configured in `vercel.json`.
+  - Global edge CDN distribution with optimized cache revalidation.
+
+---
+
+## 🌐 Deploy to Vercel
+
+### Option 1: Automatic Deploy via GitHub (Recommended)
+
+1. Push your code to your GitHub repository (`github.com/vimaljuniorofficial/VimalPhotos`).
+2. Go to the [Vercel Dashboard](https://vercel.com/new).
+3. Click **"Import"** next to **`VimalPhotos`**.
+4. Vercel automatically detects `vercel.json`:
+   - **Framework Preset**: *Other*
+   - **Root Directory**: `./`
+   - **Output Directory**: `public`
+   - **Build Command**: `npm run build`
+5. Click **Deploy**. Your photography portfolio will be instantly live on a global HTTPS `.vercel.app` domain!
+
+### Option 2: Deploy via Vercel CLI
+
+1. Install the Vercel CLI globally:
+   ```bash
+   npm i -g vercel
+   ```
+
+2. Link and deploy your project:
+   ```bash
+   vercel
+   ```
+
+3. Deploy directly to production:
+   ```bash
+   vercel --prod
+   ```
 
 ---
 
 ## 🚀 Getting Started Locally
 
 ### Prerequisites
-- [Node.js](https://nodejs.org/) (v18 or v20+)
+- [Node.js](https://nodejs.org/) (v18, v20, or v22)
 - `npm`
 
 ### Installation & Run
@@ -51,7 +86,7 @@
    npm install
    ```
 
-3. **Start the local development server**:
+3. **Start local development server**:
    ```bash
    npm run dev
    ```
@@ -59,16 +94,21 @@
 
 ---
 
+## 🔑 Admin Access
+
+- **URL**: `http://localhost:3000/admin` (or `https://your-app.vercel.app/admin` in production)
+- **Default Password**: `admin123`
+*(You can update this password directly in the **Site Settings** panel inside the dashboard)*
+
+---
+
 ## 📂 Project Structure
 
 ```text
 ├── public/                 # Production static web assets
-│   ├── index.html          # Main HTML, styling, and client logic
-│   ├── _headers            # Netlify HTTP caching headers
-│   ├── _redirects          # Netlify SPA catch-all rewrite rules
-│   └── netlify.toml        # Netlify build configuration
-├── server.js               # Node.js Express server (serves static files on port 3000)
-├── netlify.toml            # Root Netlify deployment configuration
+│   └── index.html          # Main HTML, styling, and client logic
+├── server.js               # Node.js Express server for local development
+├── vercel.json             # Vercel deployment & SPA routing configuration
 ├── package.json            # Project dependencies and npm scripts
 ├── metadata.json           # Application metadata
 └── README.md               # Project documentation
@@ -76,32 +116,36 @@
 
 ---
 
-## 🔑 Admin Access
+## ⚙️ Vercel Configuration (`vercel.json`)
 
-- **URL**: `http://localhost:3000/admin` (or `#/admin` on static hosts)
-- **Default Password**: `admin123`
-*(You can update this password directly in the **Site Settings** panel inside the dashboard)*
+The included `vercel.json` ensures smooth single-page routing without 404 errors when directly visiting `/admin` or refreshing the page:
 
----
-
-## 🌐 Deploy to Vercel
-
-### Option 1: Automatic Deploy via GitHub (Recommended)
-1. Go to [Vercel Dashboard](https://vercel.com/new).
-2. Import your GitHub repository (`VimalPhotos`).
-3. Vercel automatically detects `vercel.json`:
-   - **Framework Preset**: Other
-   - **Output Directory**: `public`
-   - **Build Command**: `npm run build`
-4. Click **Deploy**. Your site will be live on your custom `.vercel.app` URL with instant edge CDN routing and `/admin` SPA fallback support.
-
-### Option 2: Deploy via Vercel CLI
-Run the following in your terminal:
-```bash
-npm i -g vercel
-vercel
+```json
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "version": 2,
+  "framework": null,
+  "outputDirectory": "public",
+  "cleanUrls": true,
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    }
+  ]
+}
 ```
-Follow the interactive prompts to link and deploy to production.
 
 ---
 
@@ -109,9 +153,10 @@ Follow the interactive prompts to link and deploy to production.
 
 - **Frontend**: HTML5, Vanilla JavaScript (ES6+), Modern CSS (CSS Variables, Grid, Flexbox)
 - **Typography**: Space Grotesk, Inter
-- **Hosting / Server**: Express (Node.js) & Netlify Static Hosting
-- **Image CDN**: Cloudinary
-- **Sync**: Firebase Realtime Database + LocalStorage
+- **Deployment & Hosting**: [Vercel](https://vercel.com/) (Edge Network & Global CDN)
+- **Local Dev Server**: Node.js & Express
+- **Image Storage & CDN**: Cloudinary
+- **Sync & Database**: Firebase Realtime Database + LocalStorage
 
 ---
 
