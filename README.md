@@ -105,23 +105,6 @@ Follow the interactive prompts to link and deploy to production.
 
 ---
 
-## 🌐 Deploy to Netlify
-
-### Option 1: Automatic Deploy via GitHub (Recommended)
-1. Go to [Netlify](https://app.netlify.com/) and click **"Add new site"** → **"Import an existing project"**.
-2. Connect your GitHub account and select **`VimalPhotos`**.
-3. Netlify will detect `netlify.toml` automatically:
-   - **Publish directory**: `public`
-   - **Build command**: *(leave blank or `npm run build`)*
-4. Click **Deploy**.
-
-### Option 2: Drag & Drop (Netlify Drop)
-1. Navigate to [app.netlify.com/drop](https://app.netlify.com/drop).
-2. Drag and drop the **`public`** folder directly into your browser.
-3. Your site is instantly live with a secure HTTPS URL.
-
----
-
 ## 🛠️ Tech Stack
 
 - **Frontend**: HTML5, Vanilla JavaScript (ES6+), Modern CSS (CSS Variables, Grid, Flexbox)
